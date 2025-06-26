@@ -12,6 +12,7 @@ import 'package:management_cabinet_medical_mobile/providers/appointement_provide
 import 'package:management_cabinet_medical_mobile/providers/patient_provider_global.dart';
 import 'package:management_cabinet_medical_mobile/providers/patient_provider_waiting_room.dart';
 import 'package:management_cabinet_medical_mobile/providers/profile_provider.dart';
+import 'package:management_cabinet_medical_mobile/providers/weather_provider.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (_) => PatientProviderGlobal()),
       ChangeNotifierProvider(create: (_) => AppointmentProvider()),
       ChangeNotifierProvider(create: (_) => ProfileProvider()),
+      ChangeNotifierProvider(create: (_) => WeatherProvider()),
     ],
     child: MyApp(),
   ));

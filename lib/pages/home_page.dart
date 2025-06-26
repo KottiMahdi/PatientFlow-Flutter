@@ -3,7 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:management_cabinet_medical_mobile/pages/patients/add_patient_page.dart';
 import 'package:provider/provider.dart';
 import '../providers/patient_provider_waiting_room.dart';
-import '../providers/profile_provider.dart'; // Import ProfileProvider
+import '../providers/profile_provider.dart';
+import '../providers/weather_provider.dart';
 import 'appointement/Schedule_appointment.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,22 +15,126 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  // Add this if not already defined
-  String userRole = 'Not Provided yet'; // Default role, update as needed
+  String userRole = 'Not Provided yet';
 
   @override
   void initState() {
     super.initState();
-    // Fetch initial data for both providers
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<PatientProvider>(context, listen: false).fetchPatients();
       Provider.of<ProfileProvider>(context, listen: false).loadUserData(context);
+      Provider.of<WeatherProvider>(context, listen: false).loadWeather();
     });
+  }
+
+  Widget _buildWeatherWidget() {
+    return Consumer<WeatherProvider>(
+      builder: (context, weatherProvider, child) {
+        if (weatherProvider.isLoadingWeather) {
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Loading...',
+                style: TextStyle(color: Colors.white70, fontSize: 12),
+              ),
+            ],
+          );
+        }
+
+        if (weatherProvider.weatherError.isNotEmpty) {
+          return GestureDetector(
+            onTap: () {
+              print('Weather error tapped - refreshing'); // Debug print
+              weatherProvider.refreshWeather();
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.refresh, color: Colors.white70, size: 16),
+                SizedBox(width: 4),
+                Text(
+                  'Tap to retry',
+                  style: TextStyle(color: Colors.white70, fontSize: 12),
+                ),
+              ],
+            ),
+          );
+        }
+
+        if (weatherProvider.weather != null) {
+          return GestureDetector(
+            onTap: () {
+              print('Weather widget tapped - refreshing'); // Debug print
+              weatherProvider.refreshWeather();
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.network(
+                    'https://openweathermap.org/img/wn/${weatherProvider.weather!.icon}@2x.png',
+                    width: 24,
+                    height: 24,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(Icons.wb_sunny, color: Colors.white, size: 16);
+                    },
+                  ),
+                  SizedBox(width: 4),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        '${weatherProvider.weather!.temperature.round()}°C',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        weatherProvider.weather!.cityName,
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 4),
+                  Icon(
+                    Icons.refresh,
+                    color: Colors.white70,
+                    size: 16,
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        return SizedBox.shrink();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // Use listen: true to rebuild when data changes
     final patientProvider = Provider.of<PatientProvider>(context);
     final profileProvider = Provider.of<ProfileProvider>(context);
 
@@ -41,7 +146,10 @@ class HomePageState extends State<HomePage> {
         ),
         backgroundColor: const Color(0xFF1E3A8A),
         actions: [
-          //
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: Center(child: _buildWeatherWidget()),
+          ),
         ],
       ),
       body: patientProvider.isLoading || profileProvider.isLoading
@@ -49,7 +157,7 @@ class HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(color: Color(0xFF2A79B0) ),
+            CircularProgressIndicator(color: Color(0xFF2A79B0)),
             SizedBox(height: 16),
             Text(
               'Loading profile...',
@@ -65,7 +173,6 @@ class HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Replace the entire Row structure with this code
             Row(
               children: [
                 const CircleAvatar(
@@ -116,7 +223,6 @@ class HomePageState extends State<HomePage> {
                       initialDate: patientProvider.selectedDate,
                       firstDate: DateTime(2000),
                       lastDate: DateTime(2101),
-                      // Custom theme for date picker
                       builder: (context, child) {
                         return Theme(
                           data: Theme.of(context).copyWith(
@@ -175,18 +281,15 @@ class HomePageState extends State<HomePage> {
 
             const SizedBox(height: 24),
 
-            /// Quick Access Buttons section
             Text(
               'Quick Access',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 16),
 
-            // Row of quick action buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                // Add Patient button - navigates to patient registration page
                 ElevatedButton.icon(
                   onPressed: () {
                     Navigator.push(
@@ -207,7 +310,6 @@ class HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                // Add Appointment button - navigates to appointment scheduler
                 ElevatedButton.icon(
                   onPressed: () {
                     Navigator.push(
