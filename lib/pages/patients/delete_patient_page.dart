@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-
-import '../../providers/patient_provider_global.dart';
+import '../../providers/patient_provider.dart';
 
 void deletePatient(BuildContext context, QueryDocumentSnapshot patientData) {
   // Explicitly cast the data to a map

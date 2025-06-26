@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/patient_model.dart';
-import '../../providers/patient_provider_global.dart';
+import '../../providers/patient_provider.dart';
 import '../../utils/build_Date_Field.dart';
 import '../../utils/build_dopdown_field.dart';
 import '../../utils/build_text_field.dart';

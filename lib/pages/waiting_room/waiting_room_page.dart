@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../providers/patient_provider_waiting_room.dart';
+import '../../providers/track_patient_provider.dart';
 import 'classes/waititng_room_column_classe.dart';
 
 class WaitingRoomMainPage extends StatefulWidget {

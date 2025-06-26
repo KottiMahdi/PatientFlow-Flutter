@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../providers/patient_provider_global.dart';
+import '../../providers/patient_provider.dart';
 import 'antecedents_components/antecedents_dialog.dart';
 import 'antecedents_components/antecedents_styling.dart';
 

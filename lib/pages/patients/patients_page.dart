@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:management_cabinet_medical_mobile/pages/patients/add_patient_page.dart';
 import 'package:management_cabinet_medical_mobile/pages/patients/antecedents_page.dart';
 import 'package:provider/provider.dart';
-import '../../providers/patient_provider_global.dart';
+import '../../providers/patient_provider.dart';
 import '../../utils/floating_button.dart';
 import 'components/show_option_popup.dart';
 import 'components/show_patient_details.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../providers/patient_provider_waiting_room.dart';
+import '../../../providers/track_patient_provider.dart';
 import '../delete_page.dart';
 
 class WaitingRoomColumn extends StatelessWidget {

@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/patient_model.dart';
-import '../../providers/patient_provider_global.dart';
+import '../../providers/patient_provider.dart';
 
 class EditPatientPage extends StatefulWidget {
   final DocumentSnapshot patientData;

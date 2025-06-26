@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:management_cabinet_medical_mobile/pages/waiting_room/waiting_room_page.dart';
 
-import '../../providers/patient_provider_waiting_room.dart';
+import '../../providers/track_patient_provider.dart';
 
 Future<void> showAddPatientDialog(BuildContext context) async {
   final _formKey = GlobalKey<FormState>();

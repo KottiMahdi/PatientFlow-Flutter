@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/patient_provider_global.dart';
+import '../../providers/patient_provider.dart';
 
 class MedicalSignUpPage extends StatefulWidget {
   const MedicalSignUpPage({Key? key}) : super(key: key);
