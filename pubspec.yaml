@@ -45,10 +45,7 @@ dependencies:
   google_sign_in: ^6.2.1
   image_picker: ^1.1.2
   firebase_storage: ^12.4.5
-<<<<<<< HEAD
   http: ^1.1.0
-=======
->>>>>>> master
   geolocator: ^10.1.0
 
 dev_dependencies:
