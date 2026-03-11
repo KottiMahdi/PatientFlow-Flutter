@@ -2,13 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import '../providers/profile_provider.dart';
+import '../features/profile/presentation/providers/profile_provider.dart';
 
 class ImagePickerUtils {
   static final ImagePicker _picker = ImagePicker();
 
   static void showImagePickerBottomSheet(BuildContext context) {
-    final provider = Provider.of<ProfileProvider>(context, listen: false);
     final theme = Theme.of(context);
 
     showModalBottomSheet(
@@ -33,7 +32,7 @@ class ImagePickerUtils {
             const Divider(height: 1),
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: theme.primaryColor.withOpacity(0.8),
+                backgroundColor: theme.primaryColor.withValues(alpha: 0.8),
                 child: const Icon(Icons.camera_alt, color: Colors.white),
               ),
               title: const Text('Take a photo'),
@@ -44,7 +43,7 @@ class ImagePickerUtils {
             ),
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.green.withOpacity(0.8),
+                backgroundColor: Colors.green.withValues(alpha: 0.8),
                 child: const Icon(Icons.photo_library, color: Colors.white),
               ),
               title: const Text('Choose from gallery'),
@@ -81,9 +80,11 @@ class ImagePickerUtils {
     );
   }
 
-  static Future<void> _pickImage(BuildContext context, ImageSource source) async {
+  static Future<void> _pickImage(
+      BuildContext context, ImageSource source) async {
     try {
-      final provider = Provider.of<ProfileProvider>(context, listen: false);
+      final provider =
+          Provider.of<ProfileProviderGlobal>(context, listen: false);
       final pickedFile = await _picker.pickImage(
         source: source,
         maxWidth: 800,
@@ -105,7 +106,7 @@ class ImagePickerUtils {
           ),
         );
       }
-      print('Error picking image: $e');
+      debugPrint('Error picking image: $e');
     }
   }
 }

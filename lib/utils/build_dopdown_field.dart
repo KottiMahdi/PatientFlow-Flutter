@@ -19,7 +19,7 @@ Widget buildDropdownField(
     builder: (context, snapshot) {
       // Show a loading spinner while waiting for data
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       }
 
       // Display an error message if there was an issue loading the data
@@ -32,7 +32,7 @@ Widget buildDropdownField(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: DropdownButtonFormField<String>(
           // Currently selected value for the dropdown
-          value: value,
+          initialValue: value,
 
           // Function to handle changes in selection
           onChanged: onChanged,
@@ -46,7 +46,7 @@ Widget buildDropdownField(
                 option,
                 // Prevent text overflow with ellipsis
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black,
                 ),
@@ -81,11 +81,11 @@ Widget buildDropdownField(
           // Dropdown-specific configurations
           isExpanded: true, // Expands dropdown to fit content width
           dropdownColor: Colors.white, // Background color of the dropdown
-          icon: Icon(Icons.arrow_drop_down,
-              color: const Color(0xFF1E3A8A)), // Updated dropdown icon,
+          icon: const Icon(Icons.arrow_drop_down,
+              color: Color(0xFF1E3A8A)), // Updated dropdown icon,
           iconSize: 30, // Size of the dropdown icon
           elevation: 8, // Shadow depth for the dropdown
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.black), // Text style inside the dropdown
         ),
       );
