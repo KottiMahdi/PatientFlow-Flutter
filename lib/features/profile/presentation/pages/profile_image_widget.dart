@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../features/profile/presentation/providers/profile_provider.dart';
+import 'package:management_cabinet_medical_mobile/features/profile/presentation/providers/profile_provider.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   final double size;

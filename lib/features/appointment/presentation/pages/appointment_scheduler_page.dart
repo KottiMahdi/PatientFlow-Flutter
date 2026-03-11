@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../features/appointment/presentation/providers/appointment_provider.dart';
+import 'package:management_cabinet_medical_mobile/features/appointment/presentation/providers/appointment_provider.dart';
 
 class AppointmentSchedulerPage extends StatefulWidget {
   final VoidCallback onAppointmentAdded;

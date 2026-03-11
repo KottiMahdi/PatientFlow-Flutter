@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../features/auth/presentation/providers/auth_provider.dart';
-import '../../features/waiting_room/domain/entities/waiting_room_patient.dart';
-import '../../features/waiting_room/presentation/providers/waiting_room_provider.dart';
+import 'package:management_cabinet_medical_mobile/features/auth/presentation/providers/auth_provider.dart';
+import 'package:management_cabinet_medical_mobile/features/waiting_room/domain/entities/waiting_room_patient.dart';
+import 'package:management_cabinet_medical_mobile/features/waiting_room/presentation/providers/waiting_room_provider.dart';
 
 Future<void> showAddPatientDialog(BuildContext context) async {
   final formKey = GlobalKey<FormState>();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:management_cabinet_medical_mobile/features/appointment/presentation/providers/appointment_provider.dart';
-import 'package:management_cabinet_medical_mobile/core/utils/button_style.dart';
+import 'package:management_cabinet_medical_mobile/utils/button_style.dart';
 
 class AppointmentDeleteHandler {
   // Show confirmation dialog before deleting an appointment

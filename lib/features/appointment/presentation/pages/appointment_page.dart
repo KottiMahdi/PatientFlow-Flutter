@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:management_cabinet_medical_mobile/features/appointment/presentation/providers/appointment_provider.dart';
-import 'package:management_cabinet_medical_mobile/core/utils/floating_button.dart';
+import 'package:management_cabinet_medical_mobile/utils/floating_button.dart';
 import 'package:management_cabinet_medical_mobile/features/appointment/presentation/pages/appointment_scheduler_page.dart';
 import 'package:management_cabinet_medical_mobile/features/appointment/presentation/pages/components/build_action_buttons.dart';
 

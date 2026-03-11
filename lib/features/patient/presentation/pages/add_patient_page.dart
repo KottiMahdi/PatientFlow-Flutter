@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 
 import 'package:management_cabinet_medical_mobile/features/patient/domain/entities/patient.dart';
 import 'package:management_cabinet_medical_mobile/features/patient/presentation/providers/patient_provider.dart';
-import 'package:management_cabinet_medical_mobile/core/utils/build_date_field_widget.dart';
-import 'package:management_cabinet_medical_mobile/core/utils/build_dopdown_field.dart';
-import 'package:management_cabinet_medical_mobile/core/utils/build_text_field.dart';
+import 'package:management_cabinet_medical_mobile/utils/build_date_field_widget.dart';
+import 'package:management_cabinet_medical_mobile/utils/build_dopdown_field.dart';
+import 'package:management_cabinet_medical_mobile/utils/build_text_field.dart';
 
 class AddPatientPage extends StatefulWidget {
   const AddPatientPage({super.key});

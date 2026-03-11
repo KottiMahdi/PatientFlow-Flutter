@@ -241,12 +241,12 @@ class WaitingRoomMainPageState extends State<WaitingRoomMainPage> {
       icon: columnData[status]!['icon'] as IconData,
       color: columnData[status]!['color'] as Color,
       patients: patients,
-      onPatientMove: (patient) {
+      onPatientMove: (WaitingRoomPatient patient) {
         Provider.of<WaitingRoomProviderGlobal>(context, listen: false)
             .movePatient(patient.id,
                 columnData[status]!['nextStatus'] as WaitingRoomStatus);
       },
-      onPatientDropped: (patient) {
+      onPatientDropped: (WaitingRoomPatient patient) {
         Provider.of<WaitingRoomProviderGlobal>(context, listen: false)
             .movePatient(patient.id, status);
       },

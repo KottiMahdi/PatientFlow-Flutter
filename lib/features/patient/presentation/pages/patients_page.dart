@@ -5,7 +5,7 @@ import 'package:management_cabinet_medical_mobile/features/patient/presentation/
 import 'package:management_cabinet_medical_mobile/features/patient/presentation/pages/antecedents_page.dart';
 import 'package:management_cabinet_medical_mobile/features/patient/presentation/providers/patient_provider.dart';
 import 'package:management_cabinet_medical_mobile/features/patient/domain/entities/patient.dart';
-import 'package:management_cabinet_medical_mobile/core/utils/floating_button.dart';
+import 'package:management_cabinet_medical_mobile/utils/floating_button.dart';
 import 'package:management_cabinet_medical_mobile/features/patient/presentation/pages/components/show_option_popup.dart';
 import 'package:management_cabinet_medical_mobile/features/patient/presentation/pages/components/show_patient_details.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:management_cabinet_medical_mobile/features/appointment/domain/entities/appointment.dart';
-import 'package:management_cabinet_medical_mobile/core/utils/button_style.dart';
+import 'package:management_cabinet_medical_mobile/utils/button_style.dart';
 import '../delete_appointment.dart';
 import '../edit_appointment_page.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import '../../../features/profile/presentation/providers/profile_provider.dart';
+import 'package:management_cabinet_medical_mobile/features/profile/presentation/providers/profile_provider.dart';
 
 class LogoutDialogUtils {
   static void showLogoutDialog(BuildContext context) {

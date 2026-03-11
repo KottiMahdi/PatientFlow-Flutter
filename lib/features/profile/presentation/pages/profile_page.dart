@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
-import '../../features/profile/presentation/providers/profile_provider.dart';
-import 'components/drop_down_specialization.dart';
-import 'components/logout_dialog_utils.dart';
-import 'components/profile_field.dart';
+import 'package:management_cabinet_medical_mobile/features/profile/presentation/providers/profile_provider.dart';
+import 'package:management_cabinet_medical_mobile/features/profile/presentation/pages/components/drop_down_specialization.dart';
+import 'package:management_cabinet_medical_mobile/features/profile/presentation/pages/components/logout_dialog_utils.dart';
+import 'package:management_cabinet_medical_mobile/features/profile/presentation/pages/components/profile_field.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
