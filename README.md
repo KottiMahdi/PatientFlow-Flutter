@@ -1,15 +1,30 @@
 # management_cabinet_medical_mobile
 
-Concept and development of a medical management mobile application
- •Patient management module:
- Add/edit and delete patients with search functionality.
- •History system (medical history)
- Structured entry for chronic diseases, surgeries and family history.
- •Automate appointment scheduling: Create, edit and view appointments
- •Monitor patient workflow: Implement real-time status tracking for each 
-  patient (e.g. waiting room, in consultation, consultation completed) to 
-  optimize the efficiency of the application.
-  Technologies: Flutter, Dart, Firebase
+Concept and development of a medical management mobile application.
+
+## 📋 Features
+
+- **Patient management module**
+  - Add, edit, and delete patients with search functionality.
+  
+- **History system (medical history)**
+  - Structured entry for chronic diseases, surgeries, and family history.
+  
+- **Automated appointment scheduling**
+  - Create, edit, and view appointments.
+  
+- **Patient workflow monitoring**
+  - Real-time status tracking for each patient (e.g. waiting room, in consultation, consultation completed) to optimize efficiency.
+
+## 🛠️ Technologies
+
+- **Flutter**
+- **Dart**
+- **Firebase**
+
+---
+
+## 📸 Screenshots
   
 ![App Screenshot](assets/images/Untitled.png)
 
