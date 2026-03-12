@@ -1,11 +1,11 @@
 buildscript {
-    ext.kotlin_version = '1.9.22'
+    ext.kotlin_version = '2.1.0'
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.1'
+        classpath 'com.android.tools.build:gradle:8.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // Add Google Services plugin
         classpath 'com.google.gms:google-services:4.4.0'
@@ -16,13 +16,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-    }
-
-    // Force Java 17 for all projects
-    tasks.withType(JavaCompile).configureEach {
-        options.release = 17
-        // Suppress the obsolete options warnings
-        options.compilerArgs += ["-Xlint:-options", "-Xlint:-deprecation"]
     }
 }
 

@@ -20,14 +20,14 @@ class FloatingButton extends StatelessWidget {
   final Color foregroundColor;
 
   const FloatingButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     this.label = '',
     this.icon = Icons.add,
     this.padding = const EdgeInsets.only(left: 31),
     this.backgroundColor = const Color(0xFF448AFF), // BlueAccent.shade400
     this.foregroundColor = Colors.white,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

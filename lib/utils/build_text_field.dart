@@ -24,7 +24,7 @@ Widget buildTextField(
         filled: true,
         fillColor: Colors.white,
         contentPadding:
-        EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
