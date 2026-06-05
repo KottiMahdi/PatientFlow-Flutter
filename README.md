@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # management_cabinet_medical_mobile
 
 Concept and development of a medical management mobile application.
@@ -42,3 +43,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# PatientFlow
+Concept and development of a medical management mobile application using Flutter
+>>>>>>> e5070bc50fe2bbfe66ebefa2a3ca28727e674846
