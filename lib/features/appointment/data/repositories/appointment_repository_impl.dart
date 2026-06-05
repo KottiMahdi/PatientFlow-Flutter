@@ -80,9 +80,9 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
         'name': appointment.patientName.trim(),
         'time': appointment.time,
         'createdAt': FieldValue.serverTimestamp(),
-        'status': 'RDV',
+        'status': 'appointments',
         'date': appointment.date,
-        'id': user.uid,
+        'userId': user.uid,
       });
 
       return const Right(true);
@@ -113,7 +113,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
           .collection('waiting_room')
           .where('name', isEqualTo: oldPatientName.trim())
           .where('date', isEqualTo: oldDate)
-          .where('id', isEqualTo: user.uid)
+          .where('userId', isEqualTo: user.uid)
           .get();
 
       if (waitingRoomQuery.docs.isNotEmpty) {
@@ -160,7 +160,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
           .collection('waiting_room')
           .where('name', isEqualTo: patientName.trim())
           .where('date', isEqualTo: date)
-          .where('id', isEqualTo: user.uid)
+          .where('userId', isEqualTo: user.uid)
           .get();
 
       final batch = firestore.batch();

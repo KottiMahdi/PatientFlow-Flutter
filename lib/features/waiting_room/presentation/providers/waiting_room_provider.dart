@@ -60,11 +60,30 @@ class WaitingRoomProviderGlobal with ChangeNotifier {
 
   // Methods
   void init(String userId) {
-    getWaitingRoomPatients(userId).listen((patients) {
-      _allPatients = patients;
+    try {
+      getWaitingRoomPatients(userId).timeout(
+        const Duration(seconds: 10),
+        onTimeout: (sink) {
+          debugPrint('Timeout waiting for waiting room patients data');
+          sink.add([]);
+        },
+      ).listen(
+        (patients) {
+          _allPatients = patients;
+          _isLoading = false;
+          notifyListeners();
+        },
+        onError: (error) {
+          debugPrint('Error listening to waiting room patients: $error');
+          _isLoading = false;
+          notifyListeners();
+        },
+      );
+    } catch (e) {
+      debugPrint('Error initializing waiting room: $e');
       _isLoading = false;
       notifyListeners();
-    });
+    }
   }
 
   void changeDate(DateTime newDate) {
@@ -75,10 +94,23 @@ class WaitingRoomProviderGlobal with ChangeNotifier {
 
   Future<void> movePatient(
       String patientId, WaitingRoomStatus newStatus) async {
+    final idx = _allPatients.indexWhere((p) => p.id == patientId);
+    if (idx == -1) return;
+
+    // Optimistically update local list so UI reflects the change immediately
+    final oldPatient = _allPatients[idx];
+    _allPatients[idx] = oldPatient.copyWith(status: newStatus);
+    notifyListeners();
+
     final result = await updatePatientStatus(patientId, newStatus);
     result.fold(
-      (failure) => debugPrint('Error moving patient: $failure'),
-      (_) => null, // Firestore listener handles UI update
+      (failure) {
+        debugPrint('Error moving patient: $failure');
+        // Revert optimistic update on failure
+        _allPatients[idx] = oldPatient;
+        notifyListeners();
+      },
+      (_) => null,
     );
   }
 

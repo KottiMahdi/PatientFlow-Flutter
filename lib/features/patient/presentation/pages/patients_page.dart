@@ -191,7 +191,7 @@ class _PatientsPageState extends State<PatientsPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      AntecedentsPage(patientId: patient.id),
+                                      AntecedentsPage(patient: patient),
                                 ),
                               );
                             },
