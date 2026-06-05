@@ -18,7 +18,7 @@ import 'package:management_cabinet_medical_mobile/core/error/failures.dart';
 
 class DummyPatientRepository implements PatientRepository {
   @override
-  Future<Either<Failure, List<PatientEntity>>> getPatients() async => Right([]);
+  Future<Either<Failure, List<PatientEntity>>> getPatients() async => const Right([]);
 
   @override
   Future<Either<Failure, bool>> addPatient(PatientEntity patient) async =>
@@ -35,12 +35,12 @@ class DummyPatientRepository implements PatientRepository {
   @override
   Future<Either<Failure, List<String>>> getDropdownOptions(
           String document) async =>
-      Right([]);
+      const Right([]);
 
   @override
   Future<Either<Failure, Map<String, List<String>>>> fetchPatientAntecedents(
           String patientId) async =>
-      Right({
+      const Right({
         'Antécédents médicaux': ['diabète']
       });
 
@@ -52,7 +52,7 @@ class DummyPatientRepository implements PatientRepository {
   @override
   Future<Either<Failure, List<String>>> getAntecedentsOptions(
           String document) async =>
-      Right([]);
+      const Right([]);
 }
 
 void main() {
@@ -69,7 +69,7 @@ void main() {
       getAntecedentsOptionsUseCase: GetAntecedentsOptions(repo),
     );
 
-    final patient = PatientEntity(
+    const patient = PatientEntity(
       id: 'p1',
       name: 'John',
       prenom: 'Doe',
@@ -92,7 +92,7 @@ void main() {
     await tester.pumpWidget(
       ChangeNotifierProvider<PatientProviderGlobal>.value(
         value: provider,
-        child: MaterialApp(home: AntecedentsPage(patient: patient)),
+        child: const MaterialApp(home: AntecedentsPage(patient: patient)),
       ),
     );
 

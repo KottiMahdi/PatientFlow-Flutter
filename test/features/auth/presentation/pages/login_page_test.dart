@@ -27,12 +27,12 @@ class FakeAuthRepository implements AuthRepository {
   Future<Either<Failure, void>> signInWithEmail(
       String email, String password) async {
     if (signInHandler != null) return await signInHandler!(email, password);
-    return Left(ServerFailure('not implemented'));
+    return const Left(ServerFailure('not implemented'));
   }
 
   @override
   Future<Either<Failure, void>> signInWithGoogle() async =>
-      Left(ServerFailure('not implemented'));
+      const Left(ServerFailure('not implemented'));
 
   @override
   Future<Either<Failure, void>> signUp(
@@ -41,19 +41,19 @@ class FakeAuthRepository implements AuthRepository {
           required String phone,
           required String password,
           required String specialization}) async =>
-      Left(ServerFailure('not implemented'));
+      const Left(ServerFailure('not implemented'));
 
   @override
   Future<Either<Failure, void>> forgotPassword(String email) async =>
-      Left(ServerFailure('not implemented'));
+      const Left(ServerFailure('not implemented'));
 
   @override
   Future<Either<Failure, void>> signOut() async =>
-      Left(ServerFailure('not implemented'));
+      const Left(ServerFailure('not implemented'));
 
   @override
   Future<Either<Failure, void>> deleteAccount() async =>
-      Left(ServerFailure('not implemented'));
+      const Left(ServerFailure('not implemented'));
 }
 
 void main() {

@@ -38,7 +38,7 @@ class _DummyRepo implements WaitingRoomRepository {
 }
 
 class TestUpdatePatientStatus extends UpdatePatientStatus {
-  TestUpdatePatientStatus(WaitingRoomRepository repo) : super(repo);
+  TestUpdatePatientStatus(super.repo);
 
   @override
   Future<Either<Failure, void>> call(
@@ -47,7 +47,7 @@ class TestUpdatePatientStatus extends UpdatePatientStatus {
 }
 
 class TestDeleteWaitingRoomPatient extends DeleteWaitingRoomPatient {
-  TestDeleteWaitingRoomPatient(WaitingRoomRepository repo) : super(repo);
+  TestDeleteWaitingRoomPatient(super.repo);
 
   @override
   Future<Either<Failure, void>> call(String patientId) async =>
@@ -55,7 +55,7 @@ class TestDeleteWaitingRoomPatient extends DeleteWaitingRoomPatient {
 }
 
 class TestAddWaitingRoomPatient extends AddWaitingRoomPatient {
-  TestAddWaitingRoomPatient(WaitingRoomRepository repo) : super(repo);
+  TestAddWaitingRoomPatient(super.repo);
 
   @override
   Future<Either<Failure, void>> call(AddPatientParams params) async =>
@@ -71,11 +71,7 @@ void main() {
     id: 'p1',
     name: 'Test',
     time: '10:00',
-    date: DateTime.now().day.toString() +
-        '/' +
-        DateTime.now().month.toString() +
-        '/' +
-        DateTime.now().year.toString(),
+    date: '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
     createdAt: DateTime.now(),
     status: WaitingRoomStatus.waiting,
   );

@@ -74,11 +74,7 @@ class FakePatient extends WaitingRoomPatient {
           id: '1',
           name: 'A',
           time: '10:00',
-          date: DateTime.now().day.toString() +
-              '/' +
-              DateTime.now().month.toString() +
-              '/' +
-              DateTime.now().year.toString(),
+          date: '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
           createdAt: DateTime.now(),
           status: WaitingRoomStatus.appointments,
         );

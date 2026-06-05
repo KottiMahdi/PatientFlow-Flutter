@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // Use a lightweight local counter app in tests to avoid initializing Firebase
 class CounterTestApp extends StatefulWidget {
-  const CounterTestApp({Key? key}) : super(key: key);
+  const CounterTestApp({super.key});
   @override
   State<CounterTestApp> createState() => _CounterTestAppState();
 }
