@@ -27,6 +27,7 @@ import 'package:management_cabinet_medical_mobile/features/weather/domain/reposi
 import 'package:management_cabinet_medical_mobile/features/weather/data/repositories/weather_repository_impl.dart';
 import 'package:management_cabinet_medical_mobile/features/weather/domain/usecases/get_weather_by_city.dart';
 import 'package:management_cabinet_medical_mobile/features/weather/domain/usecases/get_weather_by_coordinates.dart';
+import 'package:management_cabinet_medical_mobile/features/weather/presentation/providers/weather_provider.dart';
 import 'package:management_cabinet_medical_mobile/features/waiting_room/domain/usecases/get_waiting_room_patients.dart';
 import 'package:management_cabinet_medical_mobile/features/waiting_room/domain/usecases/update_patient_status.dart';
 import 'package:management_cabinet_medical_mobile/features/waiting_room/domain/usecases/delete_waiting_room_patient.dart';
@@ -165,6 +166,13 @@ Future<void> init() async {
       updatePatientStatus: sl(),
       deleteWaitingRoomPatient: sl(),
       addWaitingRoomPatient: sl(),
+    ),
+  );
+
+  sl.registerFactory<WeatherProviderGlobal>(
+    () => WeatherProviderGlobal(
+      getWeatherByCity: sl(),
+      getWeatherByCoordinates: sl(),
     ),
   );
 

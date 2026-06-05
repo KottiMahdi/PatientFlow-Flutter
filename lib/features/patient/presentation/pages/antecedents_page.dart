@@ -6,17 +6,18 @@ import 'package:management_cabinet_medical_mobile/features/patient/presentation/
 import 'package:management_cabinet_medical_mobile/features/patient/presentation/pages/antecedents_components/antecedents_styling.dart';
 
 class AntecedentsPage extends StatefulWidget {
-  final String patientId;
+  final PatientEntity patient;
 
-  const AntecedentsPage({super.key, required this.patientId});
+  const AntecedentsPage({super.key, required this.patient});
 
   @override
   State<AntecedentsPage> createState() => _AntecedentsPageState();
 }
 
 class _AntecedentsPageState extends State<AntecedentsPage> {
-  PatientEntity patient = PatientEntity.empty();
+  late PatientEntity patient;
   bool isLoading = true;
+  String? errorMessage;
 
   final List<String> categories = [
     'Antécédents obstétricaux',
@@ -49,28 +50,36 @@ class _AntecedentsPageState extends State<AntecedentsPage> {
   Future<void> fetchData() async {
     setState(() {
       isLoading = true;
+      errorMessage = null;
     });
 
     final provider = Provider.of<PatientProviderGlobal>(context, listen: false);
-
-    // Get patient data from provider (assuming patients are already fetched in PatientsPage)
-    final patientData = provider.getPatientById(widget.patientId);
-
-    // Fetch antecedents
-    final antecedents =
-        await provider.fetchPatientAntecedents(widget.patientId);
-
-    setState(() {
-      patient = patientData;
-      categoryItems = antecedents;
-      isLoading = false;
-    });
+    try {
+      patient = widget.patient;
+      final antecedents =
+          await provider.fetchPatientAntecedents(widget.patient.id);
+      setState(() {
+        categoryItems = {
+          ...categoryItems,
+          ...antecedents,
+        };
+      });
+    } catch (e) {
+      debugPrint('Error loading antecedents: $e');
+      setState(() {
+        errorMessage = 'Unable to load patient details. Please try again.';
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   // Save antecedents using provider
   Future<void> savePatientAntecedents() async {
     final provider = Provider.of<PatientProviderGlobal>(context, listen: false);
-    await provider.savePatientAntecedents(widget.patientId, categoryItems);
+    await provider.savePatientAntecedents(widget.patient.id, categoryItems);
   }
 
   // Get antecedents options through provider
@@ -98,6 +107,28 @@ class _AntecedentsPageState extends State<AntecedentsPage> {
         ),
         body: const Center(
           child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    if (errorMessage != null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Patient Details',
+              style: TextStyle(color: Colors.white)),
+          backgroundColor: const Color(0xFF1E3A8A),
+          elevation: 0,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Text(
+              errorMessage!,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 16, color: Colors.red),
+            ),
+          ),
         ),
       );
     }

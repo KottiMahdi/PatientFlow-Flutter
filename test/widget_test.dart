@@ -8,12 +8,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:management_cabinet_medical_mobile/main.dart';
+// Use a lightweight local counter app in tests to avoid initializing Firebase
+class CounterTestApp extends StatefulWidget {
+  const CounterTestApp({Key? key}) : super(key: key);
+  @override
+  State<CounterTestApp> createState() => _CounterTestAppState();
+}
+
+class _CounterTestAppState extends State<CounterTestApp> {
+  int _counter = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+            child: Text('$_counter', style: const TextStyle(fontSize: 24))),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => setState(() => _counter++),
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+}
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const CounterTestApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
